@@ -5,8 +5,10 @@ using MiniConsoleAppProject.Models;
 using MiniConsoleAppProject.Services;
 using System.Reflection.Metadata.Ecma335;
 using System.Xml.Linq;
+StudentService studentservice = new StudentService();
 do
 {
+    
     bool ordercheck;
     int Order = 0;
     do
@@ -35,26 +37,52 @@ do
 
 
     } while (ordercheck == false || Order < 0 || Order > 5);
-
+    string name;
+    string surname;
+    int avarage;
+    int id;
     switch (Order)
     {
         case 1:
-            string name;
-            string surname;
+            
+            
             Console.Write("Enter the name of student:");
             name = Console.ReadLine();
             Console.Write("Enter the surname of student:");
             surname = Console.ReadLine();
-            StudentService.Create(name, surname);
+            Console.Write("Enter the avarage of student:");
+            avarage=int.Parse( Console.ReadLine());
+           
+            studentservice.Create(name, surname, avarage);
+            
 
             break;
         case 2:
+            Console.WriteLine("Enter the students Id.");
+             id=int.Parse(Console.ReadLine());
+            studentservice.Delete( id);
             break;
         case 3:
+
+            Console.Write("Enter Student id:");
+
+             id = int.Parse(Console.ReadLine());
+
+            Console.Write("Enter Student name:");
+             name=Console.ReadLine();
+            Console.Write("Enter Student surname:");
+            surname=Console.ReadLine();
+            Console.Write("Enter Student avarage:");
+            avarage=int.Parse(Console.ReadLine());
+            studentservice.Edit( id, name, surname, avarage);
             break;
         case 4:
+            studentservice.GetAll();
             break;
         case 5:
+            Console.WriteLine("Enter the students Id.");
+            id=int.Parse(Console.ReadLine());
+            studentservice.GetById(id);
             break;
         case 0:
             return;

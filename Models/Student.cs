@@ -8,15 +8,17 @@ namespace MiniConsoleAppProject.Models
 {
     internal class Student
     {
-        public static int _id;
-        public  string? _name;
+        private static int _id;
+        protected  string? _name;
         protected string? _surname;
         protected int _avarage;
+        public int Id;
 
 
         public Student()
             {
             _id++;
+           Id= _id;
             }
 
       
@@ -27,17 +29,22 @@ namespace MiniConsoleAppProject.Models
             } 
             set
             {
-                
-                
+                bool ordercheck;
+                do
+                {
                     if (value.Length > 3 && value.Length < 15 && string.IsNullOrWhiteSpace(value) == false)
                     {
                         _name = value;
+                        ordercheck = true;
                     }
                     else
                     {
                         Console.WriteLine("Name must contain at least 3 letter or must have less than 15 letters.");
-                        
+                        ordercheck = false;
                     }
+
+                } while (ordercheck == false);
+                   
 
                 
                

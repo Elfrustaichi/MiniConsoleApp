@@ -6,13 +6,20 @@ using System.Threading.Tasks;
 
 namespace MiniConsoleAppProject.Models
 {
-    internal class Group:Student
+    internal class Group
     {
+        private int _id;
         public int Id { get; set; }
 
-        public string Name { get; set; }
+        public string? Name { get; set; }
 
-        public static string[] Students { get; set; }
+        public Student[] Students = { };
+        
+        public Group()
+        {
+            _id++;
+            Id++;
+        }
 
      
     }
